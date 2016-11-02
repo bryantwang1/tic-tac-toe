@@ -1,0 +1,15 @@
+.row {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 90vw;
+  height: 20vh;
+}
+
+.row > div {
+  outline: 1px solid black;
+}
+
+.col-borders {
+  width: 20vw;
+  height: 20vh;
+}
