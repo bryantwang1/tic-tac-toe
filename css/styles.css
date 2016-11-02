@@ -1,8 +1,8 @@
 .row {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
-  width: 900px;
-  height: 300px;
+  width: 600px;
+  height: 200px;
 }
 
 .row > div {
@@ -10,13 +10,18 @@
 }
 
 .col-borders {
-  width: 300px;
-  height: 300px;
-  font-size: 200px;
+  width: 200px;
+  height: 200px;
+  font-size: 133px;
   text-align: center;
 }
 
 #play-again {
   margin: 20px;
   display: none;
+}
+
+#winner {
+  font-size: 70px;
+  color: gold;
 }

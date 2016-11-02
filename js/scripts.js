@@ -1,6 +1,7 @@
 var positions = [];
 var flatPositions = [];
-
+var player1 = new Player("X");
+var player2 = new Player("O");
 // Constructor for each location in a game board.
 function Position() {
   this.occupied = false;
@@ -11,6 +12,7 @@ function Position() {
 function Player(mark) {
   this.mark = mark;
   this.turn = false;
+  this.score = 0;
 }
 // Fills flatPositions, intended for use by boardCreator.
 function positionCreator() {
@@ -37,12 +39,16 @@ function winChecker() {
     var rowTest = "" + positions[idx][0].mark + positions[idx][1].mark + positions[idx][2].mark;
 
     if(rowTest === "XXX") {
-      alert("Player 1 Wins!");
+      $("#winner").text("Player 1 Wins This Round!");
+      player1.score++;
+      $("#player1-score").text(player1.score);
       $("#play-again").show();
     }
 
     if(rowTest ==="OOO") {
-      alert("Player 2 Wins!");
+      $("#winner").text("Player 2 Wins This Round!");
+      player2.score++;
+      $("#player2-score").text(player2.score);
       $("#play-again").show();
     }
   }
@@ -51,12 +57,16 @@ function winChecker() {
     var columnTest = "" + positions[0][idx].mark + positions[1][idx].mark + positions[2][idx].mark;
 
     if(columnTest === "XXX") {
-      alert("Player 1 Wins!");
+      $("#winner").text("Player 1 Wins This Round!");
+      player1.score++;
+      $("#player1-score").text(player1.score);
       $("#play-again").show();
     }
 
     if(columnTest === "OOO") {
-      alert("Player 2 Wins!");
+      $("#winner").text("Player 2 Wins This Round!");
+      player2.score++;
+      $("#player2-score").text(player2.score);
       $("#play-again").show();
     }
   }
@@ -71,11 +81,15 @@ function winChecker() {
     if(testIndexX === 1 || testIndexO === 1) {
     } else {
       if(crossTest.includes("XXX")) {
-        alert("Player 1 Wins!");
+        $("#winner").text("Player 1 Wins This Round!");
+        player1.score++;
+        $("#player1-score").text(player1.score);
         $("#play-again").show();
       }
       if(crossTest.includes("OOO")) {
-        alert("Player 2 Wins!");
+        $("#winner").text("Player 2 Wins This Round!");
+        player2.score++;
+        $("#player2-score").text(player2.score);
         $("#play-again").show();
       }
     }
@@ -99,8 +113,7 @@ function winChecker() {
 // UI below this line.
 
 $(function() {
-  var player1 = new Player("X");
-  var player2 = new Player("O");
+
   player1.turn = true;
 
   function turnSwitcher() {
@@ -143,6 +156,7 @@ $(function() {
     boardCreator();
     player1.turn = true;
     player2.turn = false;
+    $("#winner").text("");
     $(".col-borders").empty();
   });
 });
