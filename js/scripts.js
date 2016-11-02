@@ -35,16 +35,24 @@ function winChecker() {
   for(idx = 0; idx < 3; idx++) {
     var rowTest = "" + positions[idx][0].mark + positions[idx][1].mark + positions[idx][2].mark;
 
-    if(rowTest === "XXX" || rowTest ==="OOO") {
-      alert("Winner!");
+    if(rowTest === "XXX") {
+      alert("Player 1 Wins!");
+    }
+
+    if(rowTest ==="OOO") {
+      alert("Player 2 Wins!");
     }
   }
   // Tests vertical winning possibilities.
   for(idx = 0; idx < 3; idx++) {
     var columnTest = "" + positions[0][idx].mark + positions[1][idx].mark + positions[2][idx].mark;
 
-    if(columnTest === "XXX" || columnTest === "OOO") {
-      alert("Winner!");
+    if(columnTest === "XXX") {
+      alert("Player 1 Wins!");
+    }
+
+    if(columnTest === "OOO") {
+      alert("Player 2 Wins!");
     }
   }
 
@@ -57,7 +65,12 @@ function winChecker() {
 
     if(testIndexX === 1 || testIndexO === 1) {
     } else {
-      alert("Winner!");
+      if(crossTest.includes("XXX")) {
+        alert("Player 1 Wins!");
+      }
+      if(crossTest.includes("OOO")) {
+        alert("Player 2 Wins!");
+      }
     }
   }
   // Counts to check how many spaces are occupied, and tells the players that it's a draw once it reaches 9 and no player has been determined.
@@ -94,7 +107,6 @@ $(function() {
 
   positionCreator();
   boardCreator();
-
 
   $(".col-borders").click(function() {
     for(idx = 0; idx < 3; idx++) {
