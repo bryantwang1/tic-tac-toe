@@ -5,7 +5,6 @@ var flatArrayOfPositions = [];
 function Position() {
   this.occupied = false;
   this.mark = "";
-  this.clickable = true;
   this.name = "";
 }
 // Constructor for players
@@ -31,22 +30,43 @@ function boardCreator() {
   }
 }
 
+// UI below this line.
+
 $(function() {
   var player1 = new Player("X");
   var player2 = new Player("O");
+  player1.turn = true;
+  console.log(player1.turn + ", " + player2.turn);
+
+  function turnSwitcher() {
+    if(player1.turn) {
+      player1.turn = false;
+      player2.turn = true;
+    } else {
+      player2.turn = false;
+      player1.turn = true;
+    }
+  }
 
   positionCreator();
   boardCreator();
 
+
   $(".col-borders").click(function() {
-    alert(this.id);
-    this.append("X");
     for(idx = 0; idx < 3; idx++) {
       for(idx2 = 0; idx2 < 3; idx2++) {
         if(this.id === arrayOfPositions[idx][idx2].name) {
-          arrayOfPositions[idx][idx2].mark = "X";
-          arrayOfPositions[idx][idx2].occupied = true;
-          arrayOfPositions[idx][idx2].clickable = false;
+          if(arrayOfPositions[idx][idx2].occupied === false) {
+            if(player1.turn) {
+              arrayOfPositions[idx][idx2].mark = player1.mark;
+              this.append(player1.mark);
+            } else {
+              arrayOfPositions[idx][idx2].mark = player2.mark;
+              this.append(player2.mark);
+            }
+            arrayOfPositions[idx][idx2].occupied = true;
+            turnSwitcher();
+          }
         }
       }
     }
