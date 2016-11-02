@@ -14,6 +14,7 @@ function Player(mark) {
 }
 // Fills flatPositions, intended for use by boardCreator.
 function positionCreator() {
+  flatPositions = [];
   for(idx = 0; idx < 9; idx++) {
     flatPositions[idx] = new Position();
     flatPositions[idx].name = "position-" + (idx + 1);
@@ -37,10 +38,12 @@ function winChecker() {
 
     if(rowTest === "XXX") {
       alert("Player 1 Wins!");
+      $("#play-again").show();
     }
 
     if(rowTest ==="OOO") {
       alert("Player 2 Wins!");
+      $("#play-again").show();
     }
   }
   // Tests vertical winning possibilities.
@@ -49,10 +52,12 @@ function winChecker() {
 
     if(columnTest === "XXX") {
       alert("Player 1 Wins!");
+      $("#play-again").show();
     }
 
     if(columnTest === "OOO") {
       alert("Player 2 Wins!");
+      $("#play-again").show();
     }
   }
 
@@ -67,9 +72,11 @@ function winChecker() {
     } else {
       if(crossTest.includes("XXX")) {
         alert("Player 1 Wins!");
+        $("#play-again").show();
       }
       if(crossTest.includes("OOO")) {
         alert("Player 2 Wins!");
+        $("#play-again").show();
       }
     }
   }
@@ -85,6 +92,7 @@ function winChecker() {
 
   if(occupationCounter >= 9) {
     alert("Draw!");
+    $("#play-again").show();
   }
 }
 
@@ -129,4 +137,12 @@ $(function() {
     }
   });
 
+  $("#play-again").click(function() {
+    $("#play-again").hide();
+    positionCreator();
+    boardCreator();
+    player1.turn = true;
+    player2.turn = false;
+    $(".col-borders").empty();
+  });
 });
