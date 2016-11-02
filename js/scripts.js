@@ -105,7 +105,7 @@ function winChecker() {
   }
 
   if(occupationCounter >= 9) {
-    alert("Draw!");
+    $("#winner").text("No one wins this time!");
     $("#play-again").show();
   }
 }
